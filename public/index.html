@@ -301,6 +301,80 @@ main{position:relative;z-index:1;}
 .b-sl{background:rgba(0,188,212,0.1);border:1px solid rgba(0,188,212,0.2);color:var(--secondary);}
 .b-bo{background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.2);color:var(--accent);}
 
+/* BOT SECTION */
+.bot-section{
+  padding:80px 20px;position:relative;z-index:1;
+  background:linear-gradient(180deg,transparent,rgba(0,230,118,0.02) 50%,transparent);
+}
+.bot-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;}
+@media(max-width:840px){.bot-grid{grid-template-columns:1fr;text-align:center;}}
+.bot-img-wrap{position:relative;display:flex;justify-content:center;}
+.bot-img-glow{
+  position:absolute;inset:-20px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,230,118,0.15),transparent 70%);
+  animation:botglow 4s ease-in-out infinite;
+}
+@keyframes botglow{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+.bot-img{
+  width:260px;height:260px;border-radius:28px;
+  object-fit:cover;position:relative;z-index:1;
+  border:2px solid rgba(0,230,118,0.2);
+  box-shadow:0 32px 80px rgba(0,0,0,.7),0 0 60px rgba(0,230,118,0.1);
+}
+@media(max-width:840px){.bot-img{width:200px;height:200px;}}
+.bot-content{}
+.bot-release{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:3px 12px;border-radius:100px;
+  background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.2);
+  color:var(--accent);font-size:.68rem;font-weight:700;
+  font-family:'JetBrains Mono',monospace;letter-spacing:.05em;
+  margin-bottom:14px;
+}
+.bot-h{
+  font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;
+  letter-spacing:-.03em;line-height:1.1;margin-bottom:12px;
+}
+.bot-desc{font-size:.9rem;color:var(--t2);line-height:1.75;margin-bottom:24px;max-width:500px;}
+@media(max-width:840px){.bot-desc{margin:0 auto 24px;}}
+.bot-stats{display:flex;gap:24px;margin-bottom:28px;flex-wrap:wrap;}
+@media(max-width:840px){.bot-stats{justify-content:center;}}
+.bot-stat{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 14px;border-radius:9px;
+  background:var(--glass);border:1px solid var(--border);
+  font-size:.8rem;color:var(--t2);font-weight:600;
+}
+.bot-stat i{font-size:.85rem;}
+.bot-stat span{font-weight:800;color:var(--t1);}
+.bot-commands{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
+@media(max-width:840px){.bot-commands{justify-content:center;}}
+.cmd-tag{
+  padding:4px 12px;border-radius:100px;
+  font-size:.72rem;font-weight:600;
+  background:var(--glass);border:1px solid var(--border);
+  color:var(--t2);transition:all .2s;
+}
+.cmd-tag:hover{border-color:var(--border-hi);color:var(--primary);}
+.bot-btns{display:flex;gap:10px;flex-wrap:wrap;}
+@media(max-width:840px){.bot-btns{justify-content:center;}}
+.bot-btn-primary{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:12px 22px;border-radius:10px;
+  background:var(--primary);color:#080c10;
+  font-weight:700;font-size:.85rem;text-decoration:none;
+  transition:all .2s;box-shadow:0 0 24px var(--primary-glow);
+}
+.bot-btn-primary:hover{background:#69f0ae;transform:translateY(-2px);}
+.bot-btn-ghost{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:11px 20px;border-radius:10px;
+  background:var(--glass);border:1px solid var(--border-hi);
+  color:var(--primary);font-weight:600;font-size:.85rem;text-decoration:none;
+  transition:all .2s;
+}
+.bot-btn-ghost:hover{background:var(--glass2);transform:translateY(-2px);}
+
 /* FOOTER */
 footer{
   border-top:1px solid var(--border);padding:36px 20px;
@@ -357,11 +431,11 @@ footer{
     <a class="btn-o" href="/qr"><i class="fas fa-qrcode"></i> QR Code</a>
   </div>
   <div class="metrics">
-    <div class="metric"><div class="metric-v">~2s</div><div class="metric-l">Avg. Gen Time</div></div>
+    <div class="metric"><div class="metric-v">341</div><div class="metric-l">GitHub Stars</div></div>
     <div class="metric-sep"></div>
-    <div class="metric"><div class="metric-v">100%</div><div class="metric-l">Secure</div></div>
+    <div class="metric"><div class="metric-v">1.6k</div><div class="metric-l">Forks</div></div>
     <div class="metric-sep"></div>
-    <div class="metric"><div class="metric-v">6+</div><div class="metric-l">Platforms</div></div>
+    <div class="metric"><div class="metric-v">90+</div><div class="metric-l">Bot Commands</div></div>
     <div class="metric-sep"></div>
     <div class="metric"><div class="metric-v">Free</div><div class="metric-l">Always</div></div>
   </div>
@@ -568,6 +642,45 @@ footer{
         <div class="tc">$ node index.js</div>
         <div class="to"><span class="th">[ SILVA ]</span> <span class="ts">Deployment Successful!</span></div>
         <div class="to"><span class="th">[ SERVER ]</span> Running on port 5000 ✓</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SILVA MD BOT -->
+<section class="bot-section">
+  <div class="container">
+    <div class="bot-grid">
+      <div class="bot-img-wrap">
+        <div class="bot-img-glow"></div>
+        <img class="bot-img" src="https://i.imgur.com/RvEKtPJ.jpeg" alt="Silva MD Bot" loading="lazy">
+      </div>
+      <div class="bot-content">
+        <div class="bot-release"><i class="fas fa-tag"></i> silva-v5.0.0 — Latest Release</div>
+        <h2 class="bot-h">Meet <span style="background:linear-gradient(120deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Silva MD Bot</span></h2>
+        <p class="bot-desc">
+          A powerful, feature-rich WhatsApp bot with 90+ commands, AI integration, media tools, group management, and themed responses — built on Node.js and Baileys. The session ID you generate here is your key to deploying it.
+        </p>
+        <div class="bot-stats">
+          <div class="bot-stat"><i class="fas fa-star" style="color:#fbbf24"></i> <span>341</span> Stars</div>
+          <div class="bot-stat"><i class="fas fa-code-fork" style="color:var(--secondary)"></i> <span>1.6k</span> Forks</div>
+          <div class="bot-stat"><i class="fas fa-tag" style="color:var(--primary)"></i> <span>6</span> Releases</div>
+          <div class="bot-stat"><i class="fas fa-terminal" style="color:var(--accent)"></i> <span>90+</span> Commands</div>
+        </div>
+        <div class="bot-commands">
+          <span class="cmd-tag"><i class="fas fa-robot"></i> AI Chat</span>
+          <span class="cmd-tag"><i class="fas fa-download"></i> Media Downloads</span>
+          <span class="cmd-tag"><i class="fas fa-users"></i> Group Manager</span>
+          <span class="cmd-tag"><i class="fas fa-chart-bar"></i> Polls</span>
+          <span class="cmd-tag"><i class="fas fa-paint-brush"></i> Themes</span>
+          <span class="cmd-tag"><i class="fas fa-music"></i> Music</span>
+          <span class="cmd-tag"><i class="fas fa-image"></i> Stickers</span>
+          <span class="cmd-tag"><i class="fas fa-globe"></i> Web Tools</span>
+        </div>
+        <div class="bot-btns">
+          <a class="bot-btn-primary" href="https://github.com/SilvaTechB/silva-md-bot/fork" target="_blank"><i class="fas fa-code-fork"></i> Fork &amp; Deploy Bot</a>
+          <a class="bot-btn-ghost" href="https://github.com/SilvaTechB/silva-md-bot" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+        </div>
       </div>
     </div>
   </div>

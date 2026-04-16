@@ -5,6 +5,23 @@
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-green?style=flat-square)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-brightgreen?style=flat-square&logo=node.js)](https://nodejs.org)
 [![Baileys](https://img.shields.io/badge/Baileys-6.7.21-blueviolet?style=flat-square)](https://github.com/WhiskeySockets/Baileys)
+[![Bot Stars](https://img.shields.io/github/stars/SilvaTechB/silva-md-bot?style=flat-square&label=Silva%20MD%20Bot%20Stars&color=yellow)](https://github.com/SilvaTechB/silva-md-bot)
+[![Bot Forks](https://img.shields.io/github/forks/SilvaTechB/silva-md-bot?style=flat-square&label=Forks&color=blue)](https://github.com/SilvaTechB/silva-md-bot/network/members)
+
+---
+
+## Silva MD Bot
+
+This session generator is purpose-built for **[Silva MD Bot](https://github.com/SilvaTechB/silva-md-bot)** — a powerful, feature-rich WhatsApp bot with:
+
+- **90+ commands** spanning AI chat, media downloads, group management, polls, stickers, music, and web tools
+- **AI integration** — conversational AI built into your WhatsApp
+- **Themed responses** with multiple switchable themes
+- **341 stars** · **1.6k forks** · **6 releases** (latest: `silva-v5.0.0`)
+
+> Your session ID is the key to deploying the bot. Generate it here, paste it as `SESSION_ID` on your host.
+
+[![Fork Silva MD Bot](https://img.shields.io/badge/Fork%20Silva%20MD%20Bot-181717?style=for-the-badge&logo=github)](https://github.com/SilvaTechB/silva-md-bot/fork)
 
 ---
 
