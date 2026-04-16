@@ -1,127 +1,151 @@
-# Gifted-Session-Generator
-- Fork, Star and Edit as you wish
-- Deploy to your favourite hosting server eg Heroku or Render or self hosting
-- This is what I use in my **[Session Site](https://session.silvatech.top)** so don't ask for more...
+# Silva Nexus — WhatsApp Session Generator
 
- silva session
- 
-<details>
-<summary>SAMPLE USAGE IN BOT</summary>
-   
-```js
-// 1. IN YOUR LIB OR SOMEWHERE YOU LIKE:
-const fs = require('fs'),
-      zlib = require('zlib');
-      path = require('path'), 
-      axios = require('axios'),
-      sessionDir = path.join(__dirname, 'session'),
-      credsPath = path.join(sessionDir, 'creds.json'),
-      createDirIfNotExist = dir => !fs.existsSync(dir) && fs.mkdirSync(dir, { recursive: true });
+> Generate compressed WhatsApp session IDs for your bots in seconds. Deploy anywhere.
 
-createDirIfNotExist(sessionDir);
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-green?style=flat-square)](LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-brightgreen?style=flat-square&logo=node.js)](https://nodejs.org)
+[![Baileys](https://img.shields.io/badge/Baileys-6.7.21-blueviolet?style=flat-square)](https://github.com/WhiskeySockets/Baileys)
 
-async function loadSession() {
-    try {
-        if (fs.existsSync(sessionPath)) {
-            fs.unlinkSync(sessionPath);
-            console.log("♻️ ᴏʟᴅ ꜱᴇꜱꜱɪᴏɴ ʀᴇᴍᴏᴠᴇᴅ");
-        }
+---
 
-        if (!config.SESSION_ID || typeof config.SESSION_ID !== 'string') {
-            throw new Error("❌ SESSION_ID is missing or invalid");
-        }
+## What It Does
 
-        const [header, b64data] = config.SESSION_ID.split('~');
+Silva Nexus authenticates your WhatsApp account via a temporary Baileys socket and delivers a **gzip-compressed, base64-encoded session ID** (`Silva~...`) directly to your WhatsApp DM. Paste that ID as an environment variable on any hosting platform to keep your bot online indefinitely.
 
-        if (header !== "Silva" || !b64data) {
-            throw new Error("❌ Invalid session format. Expected 'Silva~.....'");
-        }
+---
 
-        const cleanB64 = b64data.replace('...', '');
-        const compressedData = Buffer.from(cleanB64, 'base64');
-        const decompressedData = zlib.gunzipSync(compressedData);
+## Authentication Methods
 
-        if (!fs.existsSync(sessionDir)) {
-            fs.mkdirSync(sessionDir, { recursive: true });
-        }
+| Method | Description |
+|---|---|
+| **Pairing Code** | Enter your phone number, get an 8-digit code, link via WhatsApp settings |
+| **QR Code** | Scan the QR with your WhatsApp camera — zero-touch |
 
-        fs.writeFileSync(credsPath, decompressedData, "utf8");
-        console.log("✅ ɴᴇᴡ ꜱᴇꜱꜱɪᴏɴ ʟᴏᴀᴅᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ");
+Both methods produce the same session ID.
 
-    } catch (e) {
-        console.error("❌ Session Error:", e.message);
-        throw e;
-    }
-}
+---
 
-module.exports = { loadSession }
+## Quick Start
 
-
-// 2. IN YOUR BOT START FILE(INDEX.JS/CLIENT.JS):
-const { loadSession } = require("./lib");
-// Other things....
-async function ConnectGiftedToWA() {
-  await loadSession();
-console.log('⏱️ Conneting Gifted Md ⏱️')
-const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/session/')
-var { version, isLatest } = await fetchLatestBaileysVersion()
-
-const Gifted = GiftedConnect({
-        version,
-        logger: P({ level: 'silent' }),
-        printQRInTerminal: !config.SESSION_ID, // Continue your functions......
-
-
+```bash
+git clone https://github.com/SilvaTechB/silva-session-generator
+cd silva-session-generator
+npm install
+node index.js
 ```
 
-</details>
+Open `http://localhost:5000` in your browser.
 
-<details>
-<summary>MORE INFO</summary>
-   
-<strong>NB:<strong/> This repo also generates session ID for all bots using gifted-baileys/whiskeysockets/baileys but with ***zlib*** comressor.
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
-<br/>WEB - PAIR CODE FOR BOTS WITH GIFTED-BAILEYS
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
-<p align="center">
-   <a href="https://github.com/mauricegift">
-    <img src="https://files.catbox.moe/52699c.jpg" width="500">
-     
-</a>
- <p align="center"><img src="https://profile-counter.glitch.me/{mauricegift}/count.svg" alt="Gifted:: Visitor's Count" /></p>
+---
 
-</details>
+## Environment Variables
 
+| Variable | Default | Description |
+|---|---|---|
+| `PORT` | `5000` | Port the server listens on |
+| `NODE_ENV` | `production` | Node environment |
 
+---
 
-[`ℹ️Contact Owner`](https://api.giftedtech.co.ke/contact)
- <br>
-<a href='https://github.com/mauricegift/gifted-session/fork' target="_blank">
-    <img alt='FORK REPO' src='https://img.shields.io/badge/-FORK REPO-black?style=for-the-badge&logo=github&logoColor=white'/>
-</a>
+## Deploy
 
+One-click deploys available for all major platforms:
 
+| Platform | Type |
+|---|---|
+| Heroku | Server |
+| Render | Server |
+| Railway | Server |
+| Fly.io | Server |
+| Koyeb | Server |
+| Vercel | Serverless |
+| Docker / VPS | Self-hosted |
+| Replit | Both |
 
-<details>
-<summary>DEPLOYMENT</summary>
- 
-<a href='https://dashboard.heroku.com/new?template=https://github.com/mauricegift/gifted-session' target="_blank"><img alt='HEROKU DEPLOY' src='https://img.shields.io/badge/-HEROKU DEPLOY-black?style=for-the-badge&logo=heroku&logoColor=white'/>
- <br>
-<a href='https://dashboard.render.com' target="_blank">
-    <img alt='DEPLOY TO RENDER' src='https://img.shields.io/badge/-DEPLOY TO RENDER-black?style=for-the-badge&logo=render&logoColor=white'/>
-</a>
- <br>
-<a href='https://app.koyeb.com' target="_blank">
-    <img alt='DEPLOY TO KOYEB' src='https://img.shields.io/badge/-DEPLOY TO KOYEB-black?style=for-the-badge&logo=koyeb&logoColor=white'/>
-</a>
+> **Heroku note:** Set `NODEJS_ALLOW_WIDE_RANGE=true` if you need to pin a specific Node.js version, or update `engines.node` in `package.json` to a specific major (e.g. `20.x`).
 
-</details>
+---
 
-[`HERE'S AN EXAMPLE OUTPUT`](https://session.giftedtech.co.ke)
-# `Owner`
+## Using the Session in Your Bot
 
- <a href="https://github.com/mauricegift"><img src="https://github.com/mauricegift.png" width="250" height="250" alt="Gifted Tech"/></a>
+```js
+const fs = require('fs');
+const zlib = require('zlib');
+const path = require('path');
 
+const sessionDir = path.join(__dirname, 'session');
+const credsPath = path.join(sessionDir, 'creds.json');
 
-   
+if (!fs.existsSync(sessionDir)) fs.mkdirSync(sessionDir, { recursive: true });
 
+async function loadSession() {
+    if (!process.env.SESSION_ID || typeof process.env.SESSION_ID !== 'string') {
+        throw new Error('SESSION_ID is missing or invalid');
+    }
+
+    const [header, b64data] = process.env.SESSION_ID.split('~');
+
+    if (header !== 'Silva' || !b64data) {
+        throw new Error("Invalid session format. Expected 'Silva~.....'");
+    }
+
+    const compressed = Buffer.from(b64data, 'base64');
+    const decompressed = zlib.gunzipSync(compressed);
+    fs.writeFileSync(credsPath, decompressed, 'utf8');
+    console.log('Session loaded successfully');
+}
+
+module.exports = { loadSession };
+```
+
+Then in your bot entry point:
+
+```js
+const { loadSession } = require('./lib');
+const { useMultiFileAuthState } = require('@whiskeysockets/baileys');
+
+async function startBot() {
+    await loadSession();
+    const { state, saveCreds } = await useMultiFileAuthState('./session');
+    // ... rest of your bot setup
+}
+```
+
+---
+
+## Tech Stack
+
+- **Runtime:** Node.js 18+
+- **Framework:** Express.js
+- **WhatsApp:** [@whiskeysockets/baileys](https://github.com/WhiskeySockets/Baileys) v6.7.21
+- **Compression:** Node.js built-in `zlib` (Gzip)
+- **Logging:** Pino + pino-pretty
+
+---
+
+## Project Structure
+
+```
+silva-session-generator/
+├── index.js          # Entry point — Express app + routes
+├── routes/
+│   ├── qr.js         # QR code auth flow
+│   ├── pair.js       # Pairing code auth flow
+│   └── index.js      # Route exports
+├── gift/
+│   └── index.js      # Utility helpers (IDs, cleanup)
+├── public/
+│   ├── index.html    # Landing page
+│   └── pair.html     # Pairing code UI
+└── package.json
+```
+
+---
+
+## License
+
+GPL-3.0 — Fork, star, and self-host freely.
+
+---
+
+Built by [Silva Tech](https://github.com/SilvaTechB)

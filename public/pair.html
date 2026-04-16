@@ -3,258 +3,261 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>SILVA NEXUS — Pairing Code</title>
+<title>Silva Nexus — Pairing Code</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --acc:#a78bfa;--acc2:#7c3aed;--acc3:#c4b5fd;
-  --green:#34d399;--cyan:#22d3ee;
-  --bg:#09090f;--card:rgba(255,255,255,0.025);--card2:rgba(255,255,255,0.05);
-  --border:rgba(255,255,255,0.07);--border-hi:rgba(167,139,250,0.3);
-  --t1:#f1f0ff;--t2:#8b8da8;--t3:#3d3f52;
+  --primary:#00e676;--primary-dim:rgba(0,230,118,0.1);--primary-glow:rgba(0,230,118,0.2);
+  --secondary:#00bcd4;
+  --bg:#080c10;--glass:rgba(255,255,255,0.03);--glass2:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.07);--border-hi:rgba(0,230,118,0.25);
+  --t1:#e8f5e9;--t2:#78909c;--t3:#37474f;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 body{
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Inter',sans-serif;
   background:var(--bg);color:var(--t1);
   min-height:100vh;display:flex;align-items:center;justify-content:center;
-  padding:24px;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  padding:24px;-webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
-.glow-orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;}
-.orb1{width:600px;height:600px;background:rgba(124,58,237,0.1);top:-200px;left:-150px;}
-.orb2{width:400px;height:400px;background:rgba(34,211,238,0.07);bottom:-100px;right:-80px;}
-.page{position:relative;z-index:10;width:100%;max-width:480px;}
-.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
-.back{
-  display:inline-flex;align-items:center;gap:7px;
-  padding:8px 14px;border-radius:8px;
-  background:var(--card);border:1px solid var(--border);
-  color:var(--t2);text-decoration:none;font-size:.82rem;font-weight:500;
-  transition:all .2s;
-}
-.back:hover{color:var(--t1);border-color:var(--border-hi);}
-.qr-link{
+
+/* BG ORBS */
+.orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;}
+.o1{width:700px;height:700px;background:rgba(0,230,118,0.05);top:-250px;right:-150px;}
+.o2{width:500px;height:500px;background:rgba(0,188,212,0.05);bottom:-150px;left:-100px;}
+
+.wrap{position:relative;z-index:10;width:100%;max-width:460px;}
+
+/* TOP BAR */
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.back-btn{
   display:inline-flex;align-items:center;gap:6px;
-  padding:8px 14px;border-radius:8px;
-  background:rgba(34,211,238,0.06);border:1px solid rgba(34,211,238,0.2);
-  color:var(--cyan);text-decoration:none;font-size:.82rem;font-weight:600;
+  padding:8px 14px;border-radius:9px;
+  background:var(--glass);border:1px solid var(--border);
+  color:var(--t2);text-decoration:none;font-size:.8rem;font-weight:500;
   transition:all .2s;
 }
-.qr-link:hover{background:rgba(34,211,238,0.1);}
-.card{
-  background:rgba(255,255,255,0.02);
-  border:1px solid var(--border);
-  border-radius:20px;overflow:hidden;
-  box-shadow:0 40px 80px rgba(0,0,0,.6);
-  animation:up .4s ease both;
+.back-btn:hover{color:var(--t1);border-color:var(--border-hi);}
+.alt-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 14px;border-radius:9px;
+  background:rgba(0,188,212,0.07);border:1px solid rgba(0,188,212,0.2);
+  color:var(--secondary);text-decoration:none;font-size:.8rem;font-weight:600;
+  transition:all .2s;
 }
-@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.alt-btn:hover{background:rgba(0,188,212,0.12);}
+
+/* CARD */
+.card{
+  background:rgba(255,255,255,0.02);border:1px solid var(--border);
+  border-radius:22px;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,0.02);
+  animation:cardUp .45s ease both;
+}
+@keyframes cardUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
 .card-head{
-  padding:26px 26px 22px;
-  background:linear-gradient(160deg,rgba(124,58,237,0.05) 0%,transparent 60%);
+  padding:26px 28px 22px;
+  background:linear-gradient(150deg,rgba(0,230,118,0.04) 0%,transparent 60%);
   border-bottom:1px solid var(--border);
 }
-.badge{
+.chip{
   display:inline-flex;align-items:center;gap:6px;
-  padding:3px 10px;border-radius:100px;
-  background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);
-  color:var(--acc3);font-size:.7rem;font-weight:700;
-  font-family:'JetBrains Mono',monospace;letter-spacing:.04em;
-  margin-bottom:12px;
+  padding:3px 11px;border-radius:100px;
+  background:var(--primary-dim);border:1px solid rgba(0,230,118,0.22);
+  color:var(--primary);font-size:.68rem;font-weight:700;
+  font-family:'JetBrains Mono',monospace;letter-spacing:.05em;
+  margin-bottom:13px;
 }
-.badge-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 2s infinite;}
+.chip-dot{width:5px;height:5px;border-radius:50%;background:var(--primary);animation:blink 2s infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.card-title{font-size:1.5rem;font-weight:800;letter-spacing:-.03em;margin-bottom:5px;}
-.card-sub{font-size:.85rem;color:var(--t2);line-height:1.55;}
-.card-body{padding:26px;}
+.card-title{font-size:1.5rem;font-weight:900;letter-spacing:-.03em;margin-bottom:5px;}
+.card-sub{font-size:.84rem;color:var(--t2);line-height:1.6;}
+
+.card-body{padding:26px 28px;}
 
 /* PROGRESS */
-.progress{display:flex;gap:0;margin-bottom:26px;position:relative;}
+.progress{display:flex;margin-bottom:26px;position:relative;}
 .progress::before{
-  content:'';position:absolute;top:13px;left:calc(100%/8);right:calc(100%/8);height:1px;
+  content:'';position:absolute;top:12px;left:12.5%;right:12.5%;height:1px;
   background:var(--border);
 }
-.prog-step{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;}
-.prog-circle{
-  width:26px;height:26px;border-radius:50%;
+.p-step{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;}
+.p-circle{
+  width:25px;height:25px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-size:.65rem;font-weight:700;font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;font-weight:700;font-family:'JetBrains Mono',monospace;
   border:1px solid var(--border);background:var(--bg);color:var(--t3);
-  transition:all .3s;margin-bottom:6px;
+  transition:all .3s;margin-bottom:5px;
 }
-.prog-circle.active{background:rgba(167,139,250,0.12);border-color:var(--acc);color:var(--acc3);box-shadow:0 0 14px rgba(167,139,250,0.3);}
-.prog-circle.done{background:linear-gradient(135deg,var(--acc2),var(--acc));border-color:var(--acc);color:#fff;}
-.prog-label{font-size:.62rem;color:var(--t3);text-align:center;font-weight:500;}
-.prog-label.active{color:var(--acc3);}
+.p-circle.active{background:var(--primary-dim);border-color:var(--primary);color:var(--primary);box-shadow:0 0 12px var(--primary-glow);}
+.p-circle.done{background:var(--primary);border-color:var(--primary);color:#080c10;}
+.p-lbl{font-size:.6rem;color:var(--t3);text-align:center;font-weight:500;}
+.p-lbl.active{color:var(--primary);}
 
 /* FORM */
-.form-group{margin-bottom:18px;}
-.form-label{display:block;font-size:.82rem;font-weight:600;color:var(--t2);margin-bottom:7px;}
-.input-wrap{position:relative;}
-.input-icon{
-  position:absolute;left:13px;top:50%;transform:translateY(-50%);
-  color:var(--t3);font-size:.85rem;pointer-events:none;
-}
+.f-group{margin-bottom:18px;}
+.f-label{display:block;font-size:.8rem;font-weight:600;color:var(--t2);margin-bottom:7px;letter-spacing:.01em;}
+.f-wrap{position:relative;}
+.f-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--t3);font-size:.82rem;pointer-events:none;}
 input[type=text]{
   width:100%;padding:13px 14px 13px 38px;
-  background:rgba(255,255,255,0.03);
-  border:1px solid var(--border);
-  border-radius:10px;color:var(--t1);
-  font-family:'JetBrains Mono',monospace;font-size:.95rem;
+  background:rgba(255,255,255,0.03);border:1px solid var(--border);
+  border-radius:11px;color:var(--t1);
+  font-family:'JetBrains Mono',monospace;font-size:.92rem;
   outline:none;transition:all .2s;-webkit-appearance:none;
 }
 input[type=text]::placeholder{color:var(--t3);}
-input[type=text]:focus{border-color:var(--border-hi);background:rgba(255,255,255,0.05);box-shadow:0 0 0 3px rgba(167,139,250,0.08);}
-.form-hint{font-size:.73rem;color:var(--t3);margin-top:5px;}
+input[type=text]:focus{border-color:var(--border-hi);background:rgba(0,230,118,0.03);box-shadow:0 0 0 3px rgba(0,230,118,0.07);}
+.f-hint{font-size:.72rem;color:var(--t3);margin-top:5px;}
 
 /* SUBMIT */
 .submit-btn{
-  width:100%;padding:14px;border-radius:10px;
-  background:linear-gradient(135deg,var(--acc2),var(--acc));
-  border:none;cursor:pointer;
-  color:#fff;font-family:'Space Grotesk',sans-serif;
-  font-size:.93rem;font-weight:700;
+  width:100%;padding:14px;border-radius:11px;
+  background:var(--primary);border:none;cursor:pointer;
+  color:#080c10;font-family:'Inter',sans-serif;
+  font-size:.9rem;font-weight:800;
   display:flex;align-items:center;justify-content:center;gap:8px;
-  transition:all .25s;box-shadow:0 0 24px rgba(124,58,237,0.25);
+  transition:all .25s;box-shadow:0 0 28px rgba(0,230,118,0.2);
 }
-.submit-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 0 40px rgba(124,58,237,0.4);}
-.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
-
-/* CODE BOX */
-.code-box{
-  margin-top:22px;
-  background:rgba(167,139,250,0.04);
-  border:1px solid rgba(167,139,250,0.2);
-  border-radius:14px;padding:20px;
-  display:none;animation:codeIn .4s ease both;
-}
-@keyframes codeIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
-.code-box.show{display:block;}
-.code-label{
-  font-size:.7rem;color:var(--acc3);
-  font-family:'JetBrains Mono',monospace;font-weight:700;
-  letter-spacing:.05em;margin-bottom:10px;
-}
-.code-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;}
-.code-val{
-  font-family:'JetBrains Mono',monospace;
-  font-size:2.1rem;font-weight:700;
-  color:var(--acc3);letter-spacing:.12em;
-  text-shadow:0 0 24px rgba(167,139,250,0.4);
-  word-break:break-all;
-}
-.copy-btn{
-  display:inline-flex;align-items:center;gap:5px;
-  padding:8px 14px;border-radius:8px;
-  background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);
-  color:var(--acc3);font-size:.78rem;font-weight:600;
-  cursor:pointer;transition:all .2s;white-space:nowrap;
-  font-family:'Space Grotesk',sans-serif;
-}
-.copy-btn:hover{background:rgba(167,139,250,0.18);}
-.code-info{
-  padding:10px 12px;border-radius:8px;
-  background:rgba(34,211,238,0.05);border:1px solid rgba(34,211,238,0.15);
-  font-size:.8rem;color:var(--cyan);
-  display:flex;align-items:flex-start;gap:7px;line-height:1.5;
-}
-.code-info i{margin-top:1px;flex-shrink:0;}
-
-/* STEPS LIST */
-.wa-steps{display:flex;flex-direction:column;gap:7px;margin-top:16px;}
-.wa-step{
-  display:flex;align-items:center;gap:9px;
-  padding:9px 12px;border-radius:8px;
-  background:var(--card);border:1px solid var(--border);
-  font-size:.8rem;color:var(--t2);
-}
-.wa-n{
-  width:20px;height:20px;border-radius:50%;flex-shrink:0;
-  background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:.6rem;font-weight:700;color:var(--acc3);
-}
+.submit-btn:hover:not(:disabled){background:#69f0ae;transform:translateY(-2px);box-shadow:0 0 44px rgba(0,230,118,0.3);}
+.submit-btn:disabled{opacity:.45;cursor:not-allowed;transform:none;}
 
 /* STATUS */
 .status{
   margin-top:14px;padding:11px 14px;
-  border-radius:9px;font-size:.82rem;
+  border-radius:10px;font-size:.82rem;
   display:none;align-items:center;gap:8px;
 }
 .status.show{display:flex;}
-.status.error{background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.2);color:#fca5a5;}
-.status.loading{background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.15);color:var(--acc3);}
-.spin{width:14px;height:14px;border-radius:50%;border:2px solid rgba(167,139,250,0.2);border-top-color:var(--acc3);animation:spin .7s linear infinite;flex-shrink:0;}
+.status.error{background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.2);color:#ff8a80;}
+.status.loading{background:var(--primary-dim);border:1px solid rgba(0,230,118,0.15);color:var(--primary);}
+.spin{width:14px;height:14px;border-radius:50%;border:2px solid rgba(0,230,118,0.2);border-top-color:var(--primary);animation:spin .7s linear infinite;flex-shrink:0;}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* CODE BOX */
+.code-box{
+  margin-top:20px;
+  background:rgba(0,230,118,0.03);border:1px solid rgba(0,230,118,0.18);
+  border-radius:14px;padding:20px;
+  display:none;animation:fadeIn .4s ease both;
+}
+@keyframes fadeIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.code-box.show{display:block;}
+.code-lbl{
+  font-size:.67rem;color:var(--primary);
+  font-family:'JetBrains Mono',monospace;font-weight:700;
+  letter-spacing:.06em;margin-bottom:10px;
+}
+.code-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;}
+.code-val{
+  font-family:'JetBrains Mono',monospace;
+  font-size:2rem;font-weight:700;
+  color:var(--primary);letter-spacing:.14em;
+  text-shadow:0 0 28px var(--primary-glow);
+  word-break:break-all;
+}
+.copy-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:8px 14px;border-radius:9px;
+  background:var(--primary-dim);border:1px solid rgba(0,230,118,0.22);
+  color:var(--primary);font-size:.76rem;font-weight:600;
+  cursor:pointer;transition:all .2s;white-space:nowrap;
+  font-family:'Inter',sans-serif;
+}
+.copy-btn:hover{background:rgba(0,230,118,0.15);}
+.code-info{
+  padding:10px 12px;border-radius:9px;
+  background:rgba(0,188,212,0.05);border:1px solid rgba(0,188,212,0.15);
+  font-size:.79rem;color:var(--secondary);
+  display:flex;align-items:flex-start;gap:7px;line-height:1.55;
+}
+.code-info i{margin-top:1px;flex-shrink:0;}
+
+/* STEPS LIST */
+.wa-steps{display:flex;flex-direction:column;gap:7px;margin-top:14px;}
+.wa-step{
+  display:flex;align-items:center;gap:9px;
+  padding:9px 12px;border-radius:9px;
+  background:var(--glass);border:1px solid var(--border);
+  font-size:.78rem;color:var(--t2);
+}
+.wa-n{
+  width:20px;height:20px;border-radius:50%;flex-shrink:0;
+  background:var(--primary-dim);border:1px solid rgba(0,230,118,0.18);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.58rem;font-weight:700;color:var(--primary);
+}
 
 /* WAITING */
 .waiting{
-  margin-top:20px;border-radius:14px;padding:22px;
-  background:var(--card);border:1px solid var(--border);
+  margin-top:18px;border-radius:14px;padding:22px;
+  background:var(--glass);border:1px solid var(--border);
   display:none;text-align:center;
 }
 .waiting.show{display:block;}
-.waiting-icon{font-size:2.4rem;margin-bottom:10px;animation:float 3s ease-in-out infinite;}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.waiting-title{font-size:.95rem;font-weight:700;margin-bottom:4px;}
-.waiting-sub{font-size:.8rem;color:var(--t2);line-height:1.55;}
+.w-icon{font-size:2.2rem;margin-bottom:10px;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.w-title{font-size:.92rem;font-weight:700;margin-bottom:4px;}
+.w-sub{font-size:.79rem;color:var(--t2);line-height:1.6;}
 </style>
 </head>
 <body>
-<div class="glow-orb orb1"></div>
-<div class="glow-orb orb2"></div>
 
-<div class="page">
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+
+<div class="wrap">
   <div class="topbar">
-    <a class="back" href="/"><i class="fas fa-arrow-left"></i> Home</a>
-    <a class="qr-link" href="/qr"><i class="fas fa-qrcode"></i> Use QR Instead</a>
+    <a class="back-btn" href="/"><i class="fas fa-arrow-left"></i> Home</a>
+    <a class="alt-btn" href="/qr"><i class="fas fa-qrcode"></i> Use QR Instead</a>
   </div>
 
   <div class="card">
     <div class="card-head">
-      <div class="badge"><span class="badge-dot"></span> PAIR CODE AUTH</div>
+      <div class="chip"><span class="chip-dot"></span> PAIRING CODE AUTH</div>
       <h1 class="card-title">Link Your WhatsApp</h1>
-      <p class="card-sub">Enter your number to get an 8-digit pairing code. No QR scan needed.</p>
+      <p class="card-sub">Enter your number to get an 8-digit pairing code. No camera scan needed.</p>
     </div>
 
     <div class="card-body">
       <!-- PROGRESS -->
       <div class="progress">
-        <div class="prog-step">
-          <div class="prog-circle active" id="c1">1</div>
-          <div class="prog-label active" id="l1">Number</div>
+        <div class="p-step">
+          <div class="p-circle active" id="c1">1</div>
+          <div class="p-lbl active" id="l1">Number</div>
         </div>
-        <div class="prog-step">
-          <div class="prog-circle" id="c2">2</div>
-          <div class="prog-label" id="l2">Code</div>
+        <div class="p-step">
+          <div class="p-circle" id="c2">2</div>
+          <div class="p-lbl" id="l2">Code</div>
         </div>
-        <div class="prog-step">
-          <div class="prog-circle" id="c3">3</div>
-          <div class="prog-label" id="l3">WhatsApp</div>
+        <div class="p-step">
+          <div class="p-circle" id="c3">3</div>
+          <div class="p-lbl" id="l3">WhatsApp</div>
         </div>
-        <div class="prog-step">
-          <div class="prog-circle" id="c4">4</div>
-          <div class="prog-label" id="l4">Session</div>
+        <div class="p-step">
+          <div class="p-circle" id="c4">4</div>
+          <div class="p-lbl" id="l4">Session</div>
         </div>
       </div>
 
       <!-- FORM -->
       <div id="formSection">
-        <div class="form-group">
-          <label class="form-label" for="phone">Phone Number</label>
-          <div class="input-wrap">
-            <span class="input-icon"><i class="fas fa-phone"></i></span>
+        <div class="f-group">
+          <label class="f-label" for="phone">Phone Number</label>
+          <div class="f-wrap">
+            <span class="f-icon"><i class="fas fa-phone"></i></span>
             <input type="text" id="phone" placeholder="2547XXXXXXXX" autocomplete="tel" inputmode="numeric">
           </div>
-          <div class="form-hint"><i class="fas fa-info-circle"></i> Include country code without + (e.g. 254712345678)</div>
+          <div class="f-hint"><i class="fas fa-circle-info"></i> Include country code without + (e.g. 254712345678)</div>
         </div>
         <button class="submit-btn" id="submitBtn" onclick="getCode()">
           <i class="fas fa-bolt"></i> Generate Pairing Code
         </button>
       </div>
 
-      <!-- STATUS MSGS -->
+      <!-- STATUS -->
       <div class="status loading" id="loadingMsg">
         <div class="spin"></div>
         <span>Connecting to WhatsApp servers...</span>
@@ -264,30 +267,30 @@ input[type=text]:focus{border-color:var(--border-hi);background:rgba(255,255,255
         <span id="errorText">Something went wrong. Please try again.</span>
       </div>
 
-      <!-- CODE RESULT -->
+      <!-- CODE -->
       <div class="code-box" id="codeBox">
-        <div class="code-label">⚡ YOUR PAIRING CODE</div>
+        <div class="code-lbl">YOUR PAIRING CODE</div>
         <div class="code-row">
           <div class="code-val" id="codeVal">----</div>
           <button class="copy-btn" onclick="copyCode()"><i class="fas fa-copy"></i> Copy</button>
         </div>
         <div class="code-info">
           <i class="fas fa-circle-info"></i>
-          <span>Open WhatsApp &rarr; <strong>⋮ Menu</strong> &rarr; <strong>Linked Devices</strong> &rarr; <strong>Link a Device</strong> &rarr; <strong>Link with phone number instead</strong> &rarr; enter this code</span>
+          <span>Open WhatsApp &rarr; <strong>Menu</strong> &rarr; <strong>Linked Devices</strong> &rarr; <strong>Link a Device</strong> &rarr; <strong>Link with phone number</strong> &rarr; enter this code</span>
         </div>
         <div class="wa-steps">
           <div class="wa-step"><div class="wa-n">1</div>Open WhatsApp on your phone</div>
-          <div class="wa-step"><div class="wa-n">2</div>Tap ⋮ Menu &rarr; Settings &rarr; Linked Devices</div>
-          <div class="wa-step"><div class="wa-n">3</div>Tap "Link a Device" &rarr; "Link with phone number"</div>
-          <div class="wa-step"><div class="wa-n">4</div>Enter the code above &rarr; session arrives in DM</div>
+          <div class="wa-step"><div class="wa-n">2</div>Tap ⋮ Menu → Settings → Linked Devices</div>
+          <div class="wa-step"><div class="wa-n">3</div>Tap "Link a Device" → "Link with phone number"</div>
+          <div class="wa-step"><div class="wa-n">4</div>Enter the code above → session arrives in DM</div>
         </div>
       </div>
 
       <!-- WAITING -->
       <div class="waiting" id="waitingBox">
-        <div class="waiting-icon">📱</div>
-        <div class="waiting-title">Waiting for WhatsApp...</div>
-        <div class="waiting-sub">Enter the code on your phone.<br>Your session ID will arrive in your WhatsApp DM automatically.</div>
+        <div class="w-icon">📱</div>
+        <div class="w-title">Waiting for WhatsApp...</div>
+        <div class="w-sub">Enter the code on your phone.<br>Your session ID will arrive in your WhatsApp DM automatically.</div>
       </div>
     </div>
   </div>
@@ -301,7 +304,7 @@ async function getCode(){
   const errBox=document.getElementById('errorMsg');
   if(!phone||phone.length<7){showError('Please enter a valid phone number with country code.');return;}
   btn.disabled=true;
-  btn.innerHTML='<div class="spin"></div> Requesting code...';
+  btn.innerHTML='<div class="spin" style="border-top-color:#080c10"></div> Requesting code...';
   loading.classList.add('show');
   errBox.classList.remove('show');
   setStep(1);
@@ -320,7 +323,7 @@ async function getCode(){
     loading.classList.remove('show');
     btn.disabled=false;
     btn.innerHTML='<i class="fas fa-bolt"></i> Generate Pairing Code';
-    showError('Network error. Please check your connection and try again.');
+    showError('Network error. Check your connection and try again.');
   }
 }
 
@@ -337,9 +340,9 @@ function setStep(n){
   for(let i=1;i<=4;i++){
     const c=document.getElementById('c'+i);
     const l=document.getElementById('l'+i);
-    c.className='prog-circle';l.className='prog-label';
-    if(i<n){c.className='prog-circle done';c.innerHTML='<i class="fas fa-check" style="font-size:.55rem"></i>';}
-    else if(i===n){c.className='prog-circle active';c.innerHTML=i;l.className='prog-label active';}
+    c.className='p-circle';l.className='p-lbl';
+    if(i<n){c.className='p-circle done';c.innerHTML='<i class="fas fa-check" style="font-size:.5rem"></i>';}
+    else if(i===n){c.className='p-circle active';c.innerHTML=i;l.className='p-lbl active';}
     else{c.innerHTML=i;}
   }
 }
