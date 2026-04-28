@@ -286,7 +286,7 @@ router.get('/', async (req, res) => {
                         const compressed = zlib.gzipSync(Buffer.from(credsJson)).toString('base64');
                         const uid = sock.user?.id;
                         if (uid) {
-                            await sock.sendMessage(uid, { text: `Silva~${compressed}` });
+                            await sock.sendMessage(uid, { text: `Golden~${compressed}` });
                             await delay(1500);
                             await sock.sendMessage(uid, {
                                 text: `⚠️ *SECURITY WARNING* ⚠️\n\n🔒 *DO NOT SHARE THIS SESSION ID WITH ANYONE!*\n\nOnly share it with your trusted bot deployer.\n\n───────────────────────\n\n✨ *SILVA TECH NEXUS*\n\n📢 Join our channel:\nhttps://whatsapp.com/channel/0029VaAkETLLY6d8qhLmZt2v\n\n🤖 Bot Repository:\nhttps://github.com/SilvaTechB/silva-md-bot`
