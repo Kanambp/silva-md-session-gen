@@ -14,7 +14,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 app.use('/qr', qrRoute);
 app.use('/code', pairRoute);
 
@@ -26,12 +25,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-
 app.get('/health', (req, res) => {
     res.json({
         status: 200,
         success: true,
-        service: 'silva-Md Session',
+        service: 'Golden-Md Session',
         timestamp: new Date().toISOString()
     });
 });
@@ -41,7 +39,7 @@ if (require.main === module) {
         console.log(`
 Deployment Successful!
 
- silva-Session-Server Running on http://localhost:` + PORT)
+ Golden-Session-Server Running on http://localhost:` + PORT)
     });
 }
 
