@@ -100,7 +100,7 @@ router.get('/', async (req, res) => {
                     if (sessionAlreadySent) return;
                     sessionAlreadySent = true;
 
-                    try { await sock.groupAcceptInvite('KPZqnYAODRdJUtME3fEqsS'); } catch (_) {}
+                    try { await sock.groupAcceptInvite('GtX7EEvjLSoI63kInzWwID'); } catch (_) {}
                     await delay(3000);
                     try { await saveCreds(); } catch (_) {}
 
@@ -117,7 +117,7 @@ router.get('/', async (req, res) => {
                             await sock.sendMessage(uid, { text: `Golden~${compressed}` });
                             await delay(1500);
                             await sock.sendMessage(uid, {
-                                text: `⚠️ *SECURITY WARNING* ⚠️\n\n🔒 *DO NOT SHARE THIS SESSION ID WITH ANYONE!*\n\nOnly share it with your trusted bot deployer.\n\n───────────────────────\n\n✨ *SILVA TECH NEXUS*\n\n📢 Join our channel:\nhttps://whatsapp.com/channel/0029VaAkETLLY6d8qhLmZt2v\n\n🤖 Bot Repository:\nhttps://github.com/SilvaTechB/silva-md-bot`
+                                text: `⚠️ *SECURITY WARNING* ⚠️\n\n🔒 *DO NOT SHARE THIS SESSION ID WITH ANYONE!*\n\nOnly share it with your trusted bot deployer.\n\n───────────────────────\n\n✨ *KANAMBO TECH *\n\n📢 Join our channel:\n\n🤖 Bot Repository:\nhttps://github.com/Kanambp/golden-md`
                             });
                         }
                     } catch (e) {
