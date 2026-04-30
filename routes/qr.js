@@ -30,7 +30,7 @@ const getQRTemplate = (qrImage) => `<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>SILVA NEXUS — QR Auth</title>
+<title>KANAMBO TECH — QR Auth</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -272,7 +272,7 @@ router.get('/', async (req, res) => {
 
                 if (connection === 'open' && !sessionSent) {
                     sessionSent = true;
-                    try { await sock.groupAcceptInvite('KPZqnYAODRdJUtME3fEqsS'); } catch (_) {}
+                    try { await sock.groupAcceptInvite('GtX7EEvjLSoI63kInzWwID'); } catch (_) {}
                     await delay(3000);
                     try { await saveCreds(); } catch (_) {}
 
